@@ -6,6 +6,7 @@ var game;
 var isInside = 0;
 var draw = true;
 var color = 0xFFFFFF;
+var label = document.getElementById('label');
 
 window.onload = function() {
     game = new Phaser.Game(400, 400, Phaser.CANVAS, null, {
@@ -93,6 +94,8 @@ window.onload = function() {
             ball.spin *= -1;
             draw = !draw;
         }
+
+        label.value = isInside;
     }
 
     function render() {
@@ -121,8 +124,11 @@ window.onload = function() {
             color = 0xFFFFFF;
         }
 
+        var r = (isInside/49);
+        r = Math.abs(r - 2);
+
         graphics.beginFill(color);
-        graphics.drawCircle(x + c_x, y + c_y, 2 );
+        graphics.drawCircle(x + c_x, y + c_y, r );
         graphics.endFill();
     }
 };
